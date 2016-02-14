@@ -2,19 +2,26 @@
 
 import classNames from 'classnames';
 
-export default class BasicCollapse extends React.Component {
+import BasicCollapseHeaderCaret from './CollapseHeaderCaret';
+
+export default class BasicCollapseHeader extends React.Component {
     render() {
-        let caret = (this.props.collapsed)
-                        ? <span onClick={this.props.toggleCollapsed}>c</span>
-                        : <span onClick={this.props.toggleCollapsed}>e</span>;
+      let caret = (this.props.caret)
+                      ? <BasicCollapseHeaderCaret key='caret' {...this.props} />
+                      : null;
 
-        let header = (this.props.title)
-                        ? <h3 className='text-shadow'>{caret}{this.props.title}</h3>
-                        : null;
-
-        return React.createElement(this.props.element,
-                                    {className: this.props.className},
-                                    {header}
-                                );
+      let title = <span key='title'>{this.props.header}</span>;
+      return React.createElement(this.props.headerElement, {}, [caret, title]);
     }
+}
+
+BasicCollapseHeader.propTypes = {
+  caret: React.PropTypes.bool,
+  header: React.PropTypes.string
+}
+
+BasicCollapseHeader.defaultProps = {
+  headerElement: 'h3',
+  caret: true,
+  header: 'Demo header'
 }
