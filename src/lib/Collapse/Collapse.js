@@ -1,5 +1,6 @@
 'use strict';
 
+import React from 'react';
 import BasicCollapseHeader from './CollapseHeader';
 import BasicCollapseBody from './CollapseBody';
 

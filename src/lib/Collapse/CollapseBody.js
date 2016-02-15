@@ -1,73 +1,43 @@
 'use strict';
 
+import React from 'react';
 import classNames from 'classnames';
 import {Motion, spring} from 'react-motion';
-import ReactHeight from 'react-height';
 
-import BasicCollapseBodyContent from './CollapseBodyContent';
+// import CollapseBodyContent from './CollapseBodyContent';
 
-export default class BasicCollapseBody extends React.Component {
-    constructor(props) {
-      super(props);
+export default class CollapseBody extends React.Component {
+  componentDidMount(){
+    // Get Height of childs.
+    // this.refs.content.clientHeight
+    console.log('Creando el cuerpo: ' + this.props.collapsed);
+    console.log('Creando el cuerpo: ' + this.refs.content.clientHeight);
 
-      this.changeHeight = this.changeHeight.bind(this);
-      this.state = {
-        height: 0
-      }
-    }
-
-    changeHeight(componentHeight) {
-      console.log(componentHeight);
-      this.setState({height: componentHeight});
-    }
-
-    render() {
-        console.log('CollapseBody: ' + this.props.collapsed);
-        console.log('CollapseBody: ' + this.state.height);
-        // let style = (this.props.collapsed) ? {display: 'none'} : {display: 'block'};
-
+  }
+  render() {
+      if (this.props.collapsed) {
         return (
-          <Motion style={{height: this.props.collapsed ? 0 : spring(200)}}>
+          <div style={{height: 0, overflow: 'hidden'}}>
+            <div ref='content'>{this.props.children}</div>
+          </div>
+        );
+      } else {
+        // let contentHeight = this.refs.content.offsetHeight + ((this.refs.content.offsetHeight - this.refs.content.offsetTop)/2);
+        // let margin = (this.refs.content.offsetHeight - this.refs.content.offsetTop) / 2;
+        // let contentHeight = this.refs.content.offsetHeight + margin;
+        let contentHeight = this.refs.content.clientHeight
+        return (
+          <Motion defaultStyle={{height: 0}} style={{height: spring(contentHeight)}}>
           {({height}) => {
-              var componentStyle = {
+              let componentStyle = {
                 border: '1px solid black',
                 height: height,
                 overflow: 'hidden'
               }
-              return <BasicCollapseBodyContent style={componentStyle} content={this.props.children}/>
+              return <div style={componentStyle} ref='content'>{this.props.children}</div>
           }}
           </Motion>
         )
-    }
-}
-
-BasicCollapseBody.defaultProps = {
-  element: 'div',
-  collapsed: true
-}
-
-/*
-
-{
-  React.createElement(this.props.element,
-                            {style: style},
-                            this.props.children
-                        );
-}
-
-
-<Motion style={{x: spring(400)}}>
-  {({x}) =>
-    // children is a callback which should accept the current value of
-    // `style`
-    <div className="demo0">
-      <div className="demo0-block" style={{
-        border: '1px solid black',
-        height: x
-      }}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </div>
-    </div>
+      }
   }
-</Motion>
-*/
+}
