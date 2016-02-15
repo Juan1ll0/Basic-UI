@@ -6,19 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
-    "develop": "webpack --config webpack.config.js --watch"
+    "develop": "webpack-dev-server"
   },
   "keywords": [
     "React",
     "Components",
-    "React-Motion"
+    "React-Motion",
+    "Collapse"
   ],
   "author": "Juan Ignacio Fernandez Diez",
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.3",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "react-motion": "^0.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",
