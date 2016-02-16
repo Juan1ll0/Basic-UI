@@ -21,6 +21,9 @@ module.exports = {
                     presets: ['es2015', 'react'],
                     plugins: ['transform-object-rest-spread']
                 }
+            }, {
+              test: /\.css$/, // Only .css files
+              loader: 'style!css' // Run both loaders
             }
         ]
     },
