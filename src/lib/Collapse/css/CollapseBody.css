@@ -1,12 +1,4 @@
-.collapseBody {
-  overflow: hidden;
-}
-
-.expanded {
+.collapse-body-expanded {
   padding: 1rem;
   border: 1px solid black;
-}
-
-.collapsed {
-  height: 0;
 }
