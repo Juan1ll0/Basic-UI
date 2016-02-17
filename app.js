@@ -14,7 +14,7 @@ class DemoComponent extends React.Component {
         <h1>Components Demo</h1>
         <div id='collapse'>
           <h2 ref='header'>Collapse Demo</h2>
-          <BasicCollapse header="Prueba" element='section'>
+          <BasicCollapse title="Prueba" element='section' icon={true}>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit,
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -44,7 +44,7 @@ class DemoComponent extends React.Component {
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </BasicCollapse>
-          <BasicCollapse header="Prueba2" element='section'>
+          <BasicCollapse title="Prueba2" element='section'>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit,
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
