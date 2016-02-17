@@ -1,28 +1,33 @@
 'use strict';
 
 import React from 'react';
-import classNames from 'classnames';
 
-import BasicCollapseHeaderCaret from './CollapseHeaderCaret';
+import BasicCollapseHeaderIcon from './CollapseHeaderIcon';
+
+import './css/CollapseHeader.css';
 
 export default class BasicCollapseHeader extends React.Component {
     render() {
-      let caret = (this.props.caret)
-                      ? <BasicCollapseHeaderCaret key='caret' {...this.props} />
+      let icon = (this.props.icon)
+                      ? <BasicCollapseHeaderIcon key='icon' {...this.props} />
                       : null;
 
-      let title = <span key='title'>{this.props.header}</span>;
-      return React.createElement(this.props.headerElement, {}, [caret, title]);
+      let title = <span key='title' className='collapse-header-title' onClick={this.props.toggleCollapse}>{this.props.title}</span>;
+      return (
+        React.createElement(this.props.headerElement, {className: 'collapse-header'}, [icon, title])
+      );
     }
 }
 
 BasicCollapseHeader.propTypes = {
-  caret: React.PropTypes.bool,
-  header: React.PropTypes.string
+  headerElement: React.PropTypes.node,
+  title: React.PropTypes.string,
+  icon: React.PropTypes.bool,
+  toggleCollapse: React.PropTypes.func.isRequired
 }
 
 BasicCollapseHeader.defaultProps = {
-  headerElement: 'h3',
-  caret: true,
-  header: 'Demo header'
+  headerElement: 'p',
+  title: 'Collapse Header',
+  icon: true,
 }
