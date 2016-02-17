@@ -1,26 +1,31 @@
 'use strict';
 
+// Libs
 import React from 'react';
+import classNames from 'classnames';
+
+// Components
 import BasicCollapseHeader from './CollapseHeader';
 import BasicCollapseBody from './CollapseBody';
+
+// CSS
+import './css/Collapse.css'
 
 export default class BasicCollapse extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {collapsed: this.props.collapsed};
         this.toggleCollapsed = this.toggleCollapsed.bind(this);
     }
     toggleCollapsed() {
-        console.log('Caret Click: ' + this.state.collapsed);
         this.setState({collapsed: !this.state.collapsed});
     }
     render() {
-        let header = (this.props.header)
+        let header = (this.props.title)
                         ? <BasicCollapseHeader
                             key='collapse-header'
                             collapsed={this.state.collapsed}
-                            toggleCollapsed={this.toggleCollapsed}
+                            toggleCollapse={this.toggleCollapsed}
                             {...this.props} />
                         : null;
 
@@ -29,16 +34,21 @@ export default class BasicCollapse extends React.Component {
                       collapsed={this.state.collapsed}
                       children={this.props.children} />
 
+        let classes = classNames({
+                        'collapse': true,
+                        [this.props.className]: true
+                      });
+
         return React.createElement(this.props.element,
-                                    {className: this.props.className},
+                                    { className: classes },
                                     [header, body]
                                 );
     }
 }
 
 BasicCollapse.propTypes = {
+  element: React.PropTypes.node,
   collapsed: React.PropTypes.bool
-  // toggleCollapsed: required, function
 }
 // optionalEnum: React.PropTypes.oneOf(['News', 'Photos']),
 
@@ -46,7 +56,3 @@ BasicCollapse.defaultProps = {
   element: 'div',
   collapsed: true
 }
-
-/*
-let body = <div className={contentClass}>{this.props.children}</div>
-*/
