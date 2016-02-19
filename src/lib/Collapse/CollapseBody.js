@@ -9,6 +9,7 @@ import './css/CollapseBody.css';
 
 // Inline styles
 const style = {
+  display: 'block',
   overflow: 'hidden'
 }
 
