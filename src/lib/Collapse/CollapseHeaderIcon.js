@@ -5,10 +5,8 @@ import React from 'react';
 export default class BasicCollapseHeaderIcon extends React.Component {
     render() {
       let style = {cursor: 'pointer'};
-      let icon = (this.props.collapsed)
-                      ? <span style={style} onClick={this.props.toggleCollapse}>&gt;</span>
-                      : <span style={style} onClick={this.props.toggleCollapse}>&lt;</span>;
-      return icon;
+      let classes = (this.props.collapsed) ? 'icon-caret-right' : 'icon-caret-down';
+      return <span style={style} className={classes} onClick={this.props.toggleCollapse}>&nbsp;</span>
     }
 }
 
