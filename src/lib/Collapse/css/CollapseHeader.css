@@ -4,4 +4,13 @@
 
 .collapse-header {
   padding: 1rem;
+  background-color: lightgray;
+}
+
+.collapse-header-expanded {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.collapse-header-collapsed {
+  border-radius: 10px;
 }
